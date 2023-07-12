@@ -14,9 +14,7 @@ class Graph {
         toNode.addEdge(toNode, weight);
     }
 
-
 }
-
 class Node {
     name;
     edges = [];
@@ -41,5 +39,7 @@ class Edge {
         this.weight = weight;
     }
 }
+
+class NodeEntry {}
 
 export default Graph;
