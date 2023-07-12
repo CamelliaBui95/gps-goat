@@ -5,7 +5,8 @@ class Controller {
   constructor(commands, handler) {
     this.commands = commands;
     this.handler = handler;
-  
+    
+    /**For Bot program */
     for (let command in commands)
       this.pannel[command] = () => new KeyboardEvent("keyup", { code: commands[command].code })
   }
