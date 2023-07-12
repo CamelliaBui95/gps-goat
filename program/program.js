@@ -1,4 +1,4 @@
-import Rock from "../rock.js";
+import Rock from "../components/rock.js";
 import config from "../config.js";
 
 class Program {
