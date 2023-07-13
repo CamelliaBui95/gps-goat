@@ -33,6 +33,7 @@ const interactiveProgram = new InteractiveProgram(
   scoreDisplay,
   levelDisplay
 );
+
 const controller = new Controller(commands, (c) =>
   interactiveProgram.setCommandCode(c)
 );
@@ -40,6 +41,7 @@ const controller = new Controller(commands, (c) =>
 playBtn.addEventListener("click", () => {
   userMode = true;
   if (demoProgram.isRunning) demoProgram.exit();
+  if (interactiveProgram.isRunning) interactiveProgram.exit();
 
   controller.activate();
 

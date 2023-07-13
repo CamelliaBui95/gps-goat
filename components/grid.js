@@ -1,8 +1,6 @@
 import Square from "./square.js";
 import Rock from "./rock.js";
 
-const scoreDisplay = document.querySelector(".scoreDisplay");
-
 class Grid {
   constructor(width, squares) {
     this.width = width;

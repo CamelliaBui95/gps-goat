@@ -1,6 +1,5 @@
 import Rock from "../components/rock.js";
 import config from "../config.js";
-
 class Program {
   timeoutSessions = {};
   interval;
