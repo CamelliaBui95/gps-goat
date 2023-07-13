@@ -22,7 +22,7 @@
     display: flex;
 }
 
-.userMode {
+.userMode, .botMode {
     width: 15%;
     cursor: pointer;
 }

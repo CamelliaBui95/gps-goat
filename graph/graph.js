@@ -11,8 +11,8 @@ class Graph {
         let toNode = this.nodes[to];
         if (!fromNode || !toNode) return;
 
-        fromNode.addEdge(fromNode, weight);
-        toNode.addEdge(toNode, weight);
+        fromNode.addEdge(toNode, Math.abs(weight));
+        //toNode.addEdge(fromNode, weight);  /** */
     }
 
     findShortestPath(from, to) {
@@ -22,8 +22,9 @@ class Graph {
 
       // Number.MAX_SAFE_INTEGER
         const distances = {};
-        for (let node in this.nodes)
-            distances[node.name] = Number.MAX_SAFE_INTEGER;
+        
+        for (let node in this.nodes) 
+            distances[node] = Number.MAX_SAFE_INTEGER;    
         
         distances[fromNode.name] = 0;
         
@@ -48,10 +49,29 @@ class Graph {
                 }
             }
         }
+
+        return this.buildPath(prevNodes, to);
     }
 
-    buildPath() {
+    buildPath(prevNodes, toNode) {
+        let reversed = [];
+        let path = [];
+        let current = toNode;
+
+        while (current != null) {
+            reversed = [...reversed, current];
+            current = prevNodes[current];
+        }
+
+        for (let i = reversed.length - 1; i >= 0; i--) 
+            path[reversed.length - (i + 1)] = reversed[i];
         
+        path.shift();
+        return path;
+    }
+
+    getNodes() {
+        return this.nodes;
     }
 
 }

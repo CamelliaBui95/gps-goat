@@ -7,8 +7,8 @@ class MinPriorityQueue {
         this.nodeEntries[this.size++] = nodeEntry;
 
         let p1 = 0;
-        let p2 = size - 1;
-        while (p1 < size) {
+        let p2 = this.size - 1;
+        while (p1 < this.size) {
             if (this.nodeEntries[p1].priority > this.nodeEntries[p2].priority)
                 this.swap(p1, p2, this.nodeEntries);
             
@@ -28,7 +28,7 @@ class MinPriorityQueue {
     }
 
     isEmpty() {
-        return size === 0;
+        return this.size === 0;
     }
 }
 
