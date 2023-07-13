@@ -10,7 +10,7 @@ class BotProgram extends Program {
     this.graph = new Graph();
   }
 
-    setNextDestination() {
+    /*setNextDestination() {
         const currentPosition = this.goat.getPosition();
         const left = this.squares.slice(0, currentPosition);
         const right = this.squares.slice(currentPosition + 1, this.squares.length);
@@ -40,6 +40,24 @@ class BotProgram extends Program {
 
         if (diffLeft <= diffRight) this.destination = nearestFromLeft;
         else this.destination = nearestFromRight;
+    }*/
+
+    setNextDestination() {
+        const currentPosition = this.goat.getPosition();
+        for (let i = 1; i < this.width; i++) {
+            let foundDestination = false;
+            for (let d of this.directions) {
+                if (!this.squares[currentPosition + d * i])
+                    continue;
+                if (this.squares[currentPosition + d * i].getStatus() === "grass") {
+                    foundDestination = true;
+                    return this.destination = currentPosition + d * i
+                      
+                }
+                if (foundDestination)
+                    return;   
+            }
+        }
     }
     
     setDirection() {
@@ -72,12 +90,10 @@ class BotProgram extends Program {
 
     for (let square of this.squares) {
       for (let neighbor of square.getNeighbors()) {
-        //const weight = neighbor - square.getIndex();
-        this.graph.addEdge(square.getIndex(), neighbor, neighbor);
+        const weight = neighbor - square.getIndex();
+        this.graph.addEdge(square.getIndex(), neighbor, weight);
       }
     }
-      
-      console.log(this.graph.getNodes())
   }
 
     doExecute() {
