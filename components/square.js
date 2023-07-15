@@ -8,7 +8,7 @@ class Square {
         //this.status = status;
         this.index = index;
         this.element = document.createElement("div");
-        this.element.textContent = index;
+        //this.element.textContent = index;
     }
 
     setStatus(status) {
@@ -36,11 +36,11 @@ class Square {
         let neighbors = [];
 
         for (let i = 0; i < directions.length; i++) {
-            const neighbor = squares[this.index + directions[i]] ? squares[this.index + directions[i]].render() : null;
+            const neighbor = squares[this.index + directions[i]] ? squares[this.index + directions[i]] : null;
           if (
             neighbor &&
-            !neighbor.classList.contains(exclusion) &&
-            !this.element.classList.contains(exclusion)
+            !exclusion.includes(neighbor.getStatus()) &&
+            !exclusion.includes(this.status)
           ) {
             if (this.index % width === 0) {
               if (directions[i] !== -1)
@@ -55,7 +55,7 @@ class Square {
           }
         }
 
-        this.neighbors = neighbors;
+      this.neighbors = neighbors;
     }
 
     getNeighbors() {

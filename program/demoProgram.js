@@ -41,9 +41,13 @@ class DemoProgram extends Program {
     const currentPosition = this.goat.getPosition();
     this.squares[currentPosition].setStatus("");
 
+    this.wolf.move();
     this.goat.move();
 
     const newPosition = this.goat.getPosition();
+    const lastGrassSession = this.timeoutSessions[newPosition];
+    if (lastGrassSession) clearTimeout(lastGrassSession);
+
     this.squares[newPosition].setStatus(this.goat.getName());
 
     this.setNewGrass(currentPosition);

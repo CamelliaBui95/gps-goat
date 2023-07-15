@@ -25,6 +25,7 @@ class Controller {
 
     activate() {
       return document.addEventListener("keyup", (e) => {
+        e.preventDefault();
         if(this.commands.hasOwnProperty(e.code))
           this.notifyHandler(e.code);
       })

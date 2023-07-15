@@ -41,28 +41,34 @@
     width: 10%;
     height: 10%;
     text-align: center;
+    background-color: rgb(22, 207, 22);
 }
 
 .goat {
-    background-color: rgb(72, 72, 243);
+    background-image: url("./assets/goat_2.png");
+    background-color: rgb(102, 53, 6);
+}
+
+.wolf {
+    background-image: url("./assets/loup.png");
+    background-color: rgb(102, 53, 6);
 }
 
 .rock {
-    background-color: rgb(138, 60, 60);
+    /*background-color: rgb(138, 60, 60);*/
+    background-color: rgb(22, 207, 22);
+    background-image: url("./assets/rock.png");
 }
 
 .grass {
-    background-color: green;
+    background-image: url("./assets/grass.png");
 }
 
 .newGrass {
-    background-color: rgb(119, 240, 119);
+   background-image: url("./assets/newGrass.png");
 }
 
 .plot {
     background-color: sandybrown;
 }
 
-/*div{
-    background-image: url("");
-}*/

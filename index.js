@@ -36,7 +36,7 @@ const interactiveProgram = new InteractiveProgram(
   scoreDisplay,
   levelDisplay
 );
-const botProgram = new BotProgram(squares, goat);
+const botProgram = new BotProgram(squares, goat, scoreDisplay, levelDisplay);
 
 const controller = new Controller(commands, (c) =>
   interactiveProgram.setCommandCode(c)
@@ -44,8 +44,10 @@ const controller = new Controller(commands, (c) =>
 
 playBtn.addEventListener("click", () => {
   userMode = true;
+
   if (demoProgram.isRunning) demoProgram.exit();
   if (interactiveProgram.isRunning) interactiveProgram.exit();
+  if (botProgram.isRunning) botProgram.exit();
 
   controller.activate();
 
@@ -55,6 +57,7 @@ playBtn.addEventListener("click", () => {
 
 watchBotBtn.addEventListener("click", () => {
   userMode = false;
+  botMode = true;
   if (demoProgram.isRunning) demoProgram.exit();
   if (interactiveProgram.isRunning) interactiveProgram.exit();
   if (botProgram.isRunning) botProgram.exit();

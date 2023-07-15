@@ -1,9 +1,6 @@
 import Program from "./program.js";
 
 class InteractiveProgram extends Program {
-  score = 0;
-  prevScore = 0;
-  level = 0;
   constructor(squares, goat, scoreDisplay, levelDisplay) {
     super(squares, goat);
     this.scoreDisplay = scoreDisplay;
@@ -24,6 +21,7 @@ class InteractiveProgram extends Program {
   willMeetLimits() {
     const currentDirection = this.goat.getDirection();
     const currentPosition = this.goat.getPosition();
+    //const otherLimits = ["rock", "wolf"];
     if (
       (currentDirection === 1 &&
         currentPosition % this.width === this.width - 1) ||
@@ -31,30 +29,13 @@ class InteractiveProgram extends Program {
         currentPosition + this.width >= this.width * this.width) ||
       (currentDirection === -1 && currentPosition % this.width === 0) ||
       (currentDirection === -this.width && currentPosition - this.width < 0) ||
-      this.squares[currentPosition + currentDirection].getStatus() === "rock"
-    )
+      this.squares[currentPosition + currentDirection].getStatus() === "rock" ||
+      this.squares[currentPosition + currentDirection].getStatus() === "wolf"
+    ) {
       return true;
-    return false;
-  }
-
-  onInit() {
-    this.score = 0;
-  }
-
-  updateSquares() {
-    const prevPosition = this.goat.getPosition();
-
-    this.squares[prevPosition].setStatus("");
-
-    this.goat.move();
-
-    const newPosition = this.goat.getPosition();
-    if (this.squares[newPosition].getStatus() === "grass") {
-      this.score += 1;
-      this.scoreDisplay.textContent = this.score;
     }
-
-    this.squares[newPosition].setStatus(this.goat.getName());
+      
+    return false;
   }
 
   proceedToNextLvl() {
@@ -67,6 +48,29 @@ class InteractiveProgram extends Program {
     this.pause();
     this.intervalTime = this.intervalTime * this.speed;
     this.restart();
+  }
+
+  onInit() {
+    this.score = 0;
+  }
+
+  updateSquares() {
+    const prevPosition = this.goat.getPosition();
+    if (this.squares[prevPosition].getStatus() === "wolf")
+      return this.pause();
+    
+    this.squares[prevPosition].setStatus("soil");
+
+    this.goat.move();
+    this.wolf.move();
+
+    const newPosition = this.goat.getPosition();
+    if (this.squares[newPosition].getStatus() === "grass") {
+      this.score += 1;
+      this.scoreDisplay.textContent = this.score;
+    }
+
+    this.squares[newPosition].setStatus(this.goat.getName());
   }
 
   doExecute() {

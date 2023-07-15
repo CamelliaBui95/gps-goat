@@ -1,4 +1,5 @@
 import Rock from "../components/rock.js";
+import Wolf from "../components/wolf.js";
 import config from "../config.js";
 class Program {
   timeoutSessions = {};
@@ -10,21 +11,35 @@ class Program {
   directions = config.directions;
   area = config.area;
   obstacles = [];
+  score = 0;
+  prevScore = 0;
+  level = 1;
 
   constructor(squares, goat) {
     this.squares = squares;
     this.goat = goat;
+    this.wolf = new Wolf();
   }
 
   setUp() {
     for (let i = 0; i < this.area; i++) this.squares[i].setStatus("grass");
 
-    this.obstacles = Rock.generateRocks(this.area);
-    for (let rockIndex of this.obstacles)
+    /**Set rocks */
+    let rocks = Rock.generateRocks(this.area);
+    for (let rockIndex of rocks)
       this.squares[rockIndex].setStatus("rock");
+    
+    /**Set wolf */
+    let wolfLocation = this.wolf.locate(this.squares);
+    while (rocks.includes(wolfLocation[0]) && rocks.includes(wolfLocation[1]))
+      wolfLocation = this.wolf.locate(this.squares);
+    
+    this.obstacles = [...rocks, ...wolfLocation];
 
     for (let square of this.squares)
-      square.addNeighbors(this.squares, this.directions, this.width, "rock");
+      square.addNeighbors(this.squares, this.directions, this.width, ["rock", "wolf"]);
+
+    console.log(this.squares)
   }
 
   init() {
