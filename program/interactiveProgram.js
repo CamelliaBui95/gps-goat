@@ -39,19 +39,19 @@ class InteractiveProgram extends Program {
   }
 
   proceedToNextLvl() {
-    this.isRunning = false;
+    this.pause();
     this.prevScore = this.score;
 
     this.level += 1;
     this.levelDisplay.textContent = this.level;
 
-    this.pause();
     this.intervalTime = this.intervalTime * this.speed;
     this.restart();
   }
 
   onInit() {
-    this.score = 0;
+    this.scoreDisplay.textContent = this.score;
+    this.levelDisplay.textContent = this.level;
   }
 
   updateSquares() {
@@ -59,7 +59,7 @@ class InteractiveProgram extends Program {
     if (this.squares[prevPosition].getStatus() === "wolf")
       return this.pause();
     
-    this.squares[prevPosition].setStatus("soil");
+    this.squares[prevPosition].setStatus("");
 
     this.goat.move();
     this.wolf.move();
@@ -77,6 +77,8 @@ class InteractiveProgram extends Program {
     if (this.willMeetLimits()) {
       this.pause();
       this.intervalTime = 1000;
+      this.score = 0;
+      this.level = 1;
       return this.restart();
     }
 

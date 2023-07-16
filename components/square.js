@@ -39,8 +39,8 @@ class Square {
             const neighbor = squares[this.index + directions[i]] ? squares[this.index + directions[i]] : null;
           if (
             neighbor &&
-            !exclusion.includes(neighbor.getStatus()) &&
-            !exclusion.includes(this.status)
+            !exclusion.includes(neighbor.getIndex()) &&
+            !exclusion.includes(this.index)
           ) {
             if (this.index % width === 0) {
               if (directions[i] !== -1)

@@ -37,9 +37,7 @@ class Program {
     this.obstacles = [...rocks, ...wolfLocation];
 
     for (let square of this.squares)
-      square.addNeighbors(this.squares, this.directions, this.width, ["rock", "wolf"]);
-
-    console.log(this.squares)
+      square.addNeighbors(this.squares, this.directions, this.width, this.obstacles);
   }
 
   init() {

@@ -59,7 +59,7 @@ class BotProgram extends Program {
 
   updateSquares() {
     const currentPosition = this.goat.getPosition();
-    this.squares[currentPosition].setStatus("soil");
+    this.squares[currentPosition].setStatus("");
 
     this.goat.move();
     this.wolf.move();
@@ -76,33 +76,33 @@ class BotProgram extends Program {
 
   proceedToNextLvl() {
     if (this.intervalTime <= 0)
-      this.exit();
+      this.restart();
     
-    this.isRunning = false;
+    this.pause();
     this.prevScore = this.score;
 
     this.level += 1;
     this.levelDisplay.textContent = this.level;
-
-    this.pause();
+    
     this.intervalTime = this.intervalTime * this.speed;
     this.restart();
   }
 
   onInit() {
-    this.score = 0;
+    this.scoreDisplay.textContent = this.score;
+    this.levelDisplay.textContent = this.level;
+
     for (let square of this.squares) this.graph.addNode(square.getIndex());
 
     for (let square of this.squares) {
       for (let neighbor of square.getNeighbors()) {
-        // const weight = neighbor - square.getIndex();
         this.graph.addEdge(square.getIndex(), neighbor, 1);
       }
     }
   }
 
   doExecute() {
-    if (this.score  === this.area - (this.obstacles.length + 1))
+    if ((this.score - this.prevScore) === this.area - (this.obstacles.length + 1))
       this.proceedToNextLvl();
 
     this.setDirection();
