@@ -1,3 +1,4 @@
+// Obsolete Script
 const grid = document.querySelector(".grid");
 const scoreDisplay = document.querySelector(".scoreDisplay");
 let width = 10;
