@@ -21,7 +21,6 @@ class InteractiveProgram extends Program {
   willMeetLimits() {
     const currentDirection = this.goat.getDirection();
     const currentPosition = this.goat.getPosition();
-    //const otherLimits = ["rock", "wolf"];
     if (
       (currentDirection === 1 &&
         currentPosition % this.width === this.width - 1) ||
@@ -56,8 +55,6 @@ class InteractiveProgram extends Program {
 
   updateSquares() {
     const prevPosition = this.goat.getPosition();
-    if (this.squares[prevPosition].getStatus() === "wolf")
-      return this.pause();
     
     this.squares[prevPosition].setStatus("");
 
