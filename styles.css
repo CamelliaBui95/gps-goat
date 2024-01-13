@@ -16,6 +16,10 @@ ul {
     border-width: 4px;
 }
 
+.solid-2 {
+    border-width: 2px;
+}
+
 .rounded-md {
     border-radius: 10px;
 }
@@ -105,6 +109,10 @@ h3 {
     transform: translateY(-30%);
 }
 
+.translate-y-minus-20 {
+    transform: translateY(-20%);
+}
+
 .bg-grey {
     background-color: rgb(240, 240, 240);
 }
@@ -125,26 +133,33 @@ h3 {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
+.text-xl {
+    font-size: 1.5rem;
+}
+
+.text-md {
+    font-size: 0.75rem;
+}
+
 /**/
 
 body {
     font-family: 'Source Code Pro', monospace;
-    padding: 0;
     margin: 0;
     box-sizing: border-box;
     width: 95%;
     margin: 0 auto;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    padding-bottom: 5rem;
+    padding: 2rem 0 5rem 0;
 }
 
 h1 {
     text-align: center;
-    margin: 0 0 3rem 0;
+    margin: auto;
+    margin-bottom: 2rem;
+    width: 95%;
     padding: 1rem;
-    color: rgb(102, 53, 6);
     font-size: 3rem;
-    background-color: rgb(22, 207, 22);
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
@@ -176,7 +191,6 @@ h1 {
 
 .container {
     width: 500px;
-
     font-size: 18px;
     position: relative;
 }
@@ -307,6 +321,60 @@ h1 {
     font-size: 2rem;
     margin: 0;
     padding: 1rem;
+}
+
+.onLeavingAnim {
+    transition-property: height, left, opacity;
+    transition-duration: 0.5s, 0.5s, 0.5s;
+    transition-timing-function: ease, ease, ease;
+    transition-delay: 0s, 0.5s, 0.3s;
+}
+
+.onLeaving {
+    h3 {
+        opacity: 0;
+    }
+
+    height: 2px !important;
+    left: -120% !important;
+    opacity: 0 !important;
+}
+
+.onEnteringAnim {
+    opacity: 0;
+
+    h3 {
+        opacity: 0;
+    }
+
+    height: 2px !important;
+    right: -120% !important;
+ 
+    transition-property: opacity, right, height;
+    transition-duration: 0.5s, 0.5s, 0.5s;
+    transition-timing-function: ease, ease, ease;
+    transition-delay: 0.3s, 0.6s, 0.10s;
+}
+
+.onEntering {
+    right: 0 !important;
+    opacity: 0.9 !important;
+    height: 20% !important;
+
+    h3 {
+        opacity: 1;
+    }
+
+    animation: verticalSlide 1s ease alternate infinite;
+}
+
+@keyframes verticalSlide {
+    0% {
+        transform: translateY(-3%);
+    }
+    100% {
+        transform: translateY(3%);
+    }
 }
 
 /*Keys*/

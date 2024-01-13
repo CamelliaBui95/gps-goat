@@ -2,8 +2,8 @@ import Program from "./program.js";
 
 class DemoProgram extends Program {
   handler = null;
-  constructor(squares, goat, handler) {
-    super(squares, goat);
+  constructor(squares, goat, handler, messageDialog) {
+    super(squares, goat, messageDialog);
     this.handler = handler;
   }
 
@@ -65,6 +65,11 @@ class DemoProgram extends Program {
   onExit() {
     for (let session in this.timeoutSessions)
       clearTimeout(this.timeoutSessions[session]);
+  }
+
+  onInit() {
+    this.messageDialog.setMessage("Let's Play");
+    this.messageDialog.displayMessage();
   }
 }
 

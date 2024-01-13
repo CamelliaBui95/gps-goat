@@ -4,12 +4,14 @@ import Program from "./program.js";
 class BotProgram extends Program {
   destination = 0;
   path = [];
+  handler = null;
 
-  constructor(squares, goat, scoreDisplay, levelDisplay) {
-    super(squares, goat);
+  constructor(squares, goat, scoreDisplay, levelDisplay, handler, messageDialog) {
+    super(squares, goat, messageDialog);
     this.graph = new Graph();
     this.scoreDisplay = scoreDisplay;
     this.levelDisplay = levelDisplay;
+    this.handler = handler;
   }
 
   setNextDestination() {
@@ -55,6 +57,7 @@ class BotProgram extends Program {
     const newDirection = nextSquare - currentPosition;
 
     this.goat.setDirection(newDirection);
+    this.handler(newDirection);
   }
 
   updateSquares() {
@@ -75,7 +78,7 @@ class BotProgram extends Program {
   }
 
   proceedToNextLvl() {
-    if (this.intervalTime <= 0)
+    if (this.intervalTime <= 0) 
       this.restart();
     
     this.pause();
@@ -86,11 +89,13 @@ class BotProgram extends Program {
     
     this.intervalTime = this.intervalTime * this.speed;
     this.restart();
+    this.handler(1);
   }
 
   onInit() {
     this.scoreDisplay.textContent = this.score;
     this.levelDisplay.textContent = this.level;
+    this.messageDialog.clearMessage();
 
     for (let square of this.squares) this.graph.addNode(square.getIndex());
 

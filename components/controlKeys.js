@@ -17,6 +17,8 @@ class ControlKeys {
 
     updateKeys(direction) {
         this.refreshKeys();
+        if (direction === null)
+            return;
         if (direction === 1)
             this.rightKey.classList.add("bg-grey-md");
         if (direction === -1)

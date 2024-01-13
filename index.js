@@ -3,6 +3,7 @@ import Grid from "./components/grid.js";
 import Goat from "./components/goat.js";
 import Controller from "./components/controller.js";
 import ControlKeys from "./components/controlKeys.js";
+import MessageDialog from "./components/messageDialog.js";
 import Square from "./components/square.js";
 import DemoProgram from "./program/demoProgram.js";
 import BotProgram from "./program/botProgram.js";
@@ -27,26 +28,45 @@ const commands = {
 };
 
 const controlKeys = new ControlKeys();
+const msgDialog = new MessageDialog();
 
 for (let i = 0; i < config.area; i++) squares[i] = new Square(i);
 
 const goat = new Goat(0, 1);
 const grid = new Grid(width, squares);
-const demoProgram = new DemoProgram(squares, goat, (direction) => {
-  controlKeys.updateKeys(direction);
-});
+const demoProgram = new DemoProgram(
+  squares,
+  goat,
+  (direction) => {
+    controlKeys.updateKeys(direction);
+  },
+  msgDialog
+);
 
 const interactiveProgram = new InteractiveProgram(
   squares,
   goat,
   scoreDisplay,
-  levelDisplay
+  levelDisplay,
+  (direction) => {
+    controlKeys.updateKeys(direction);
+  },
+  msgDialog
 );
-const botProgram = new BotProgram(squares, goat, scoreDisplay, levelDisplay);
+const botProgram = new BotProgram(
+  squares,
+  goat,
+  scoreDisplay,
+  levelDisplay,
+  (direction) => {
+    controlKeys.updateKeys(direction);
+  },
+  msgDialog
+);
 
-const controller = new Controller(commands, (c) =>
-  interactiveProgram.setCommandCode(c)
-);
+const controller = new Controller(commands, (c) => {
+  interactiveProgram.setCommandCode(c);
+});
 
 playBtn.addEventListener("click", () => {
   userMode = true;
@@ -55,6 +75,8 @@ playBtn.addEventListener("click", () => {
   if (interactiveProgram.isRunning) interactiveProgram.exit();
   if (botProgram.isRunning) botProgram.exit();
 
+  controlKeys.refreshKeys();
+  controller.desactivate();
   controller.activate();
 
   interactiveProgram.init();
@@ -70,7 +92,7 @@ watchBotBtn.addEventListener("click", () => {
 
   botProgram.init();
   botProgram.execute();
-})
+});
 
 if (!userMode && !botMode) {
   grid.render();

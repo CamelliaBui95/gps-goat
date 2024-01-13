@@ -15,10 +15,12 @@ class Program {
   score = 0;
   prevScore = 0;
   level = 1;
+  messageDialog = null;
 
-  constructor(squares, goat) {
+  constructor(squares, goat, messageDialog) {
     this.squares = squares;
     this.goat = goat;
+    this.messageDialog = messageDialog;
     this.wolf = new Wolf();
   }
 
@@ -72,6 +74,8 @@ class Program {
   }
 
   pause() {
+    this.onPause();
+
     this.isRunning = false;
     clearInterval(this.interval);
   }
@@ -86,9 +90,20 @@ class Program {
     this.execute();
   }
 
-  onResume() {}
-  onInit() {}
+  onResume() {
+    this.messageDialog.clearMessage();
+  }
+
+  onInit() {
+
+  }
+
   onExit() { }
+  
+  onPause() {
+    this.messageDialog.setMessage("Pause");
+    this.messageDialog.displayMessage();
+  }
 
 }
 

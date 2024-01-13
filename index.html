@@ -16,7 +16,8 @@
 
 <body>
 
-    <h1>Feed My Goat</h1>
+    <h1 class="rounded-md border border-black solid-2"><img src="./assets/goat_right.png" class="translate-y-10" /> Feed
+        My Goat <img src="./assets/goat_left.png" class="translate-y-10" /></h1>
     <div class="wrapper">
         <div id="instruction-container">
 
@@ -35,49 +36,54 @@
                     keyboard to pause/resume the game while playing.</li>
                 <li class="my-1 none-style">Once you have cleared all the grass of the current grid, you'll proceed to
                     the next levels where the goat's speed will be progressively higher in each.</li>
-                <li class="my-1 none-style">Be careful not to lead your goat into the wolves or rocks or the game will
+                <li class="my-1 none-style">Be careful not to lead your goat into the wolves / rocks or the game will
                     be over !</li>
             </ul>
         </div>
 
         <div class="container">
 
-            <div class="display shadow-sm">
-                <div class="scoreDisplay">
-                    <p>Score: </p>
-                    <p class="score"></p>
+            <div class="bound">
+                <div class="display shadow-sm">
+                    <div class="scoreDisplay">
+                        <p>Score: </p>
+                        <p class="score"></p>
+                    </div>
+                    <div class="levelDisplay">
+                        <p>Level: </p>
+                        <p class="currentLevel"></p>
+                    </div>
                 </div>
-                <div class="levelDisplay">
-                    <p>Level: </p>
-                    <p class="currentLevel"></p>
-                </div>
-            </div>
-            <div id="message-container" class="shadow-sm">
-                <h3 id="#message">Let's Feed</h3>
-            </div>
-            <div class="grid shadow-sm"></div>
 
-            <div class="btn-group shadow-sm">
-                <button class="btn userMode shadow-sm">Play</button>
-                <button class="btn botMode shadow-sm">Watch Bot</button>
+                <div id="message-container" class="shadow-sm p-1">
+                    <h3 id="message"></h3>
+                </div>
+
+                <div class="grid shadow-sm"></div>
+
+                <div class="btn-group shadow-sm">
+                    <button class="btn userMode shadow-sm">Play</button>
+                    <button class="btn botMode shadow-sm">Watch Bot</button>
+                </div>
             </div>
         </div>
 
         <div id="controls-container" class="flex flex-col justify-center align-center">
             <div class="row flex justify-center align-center">
-                <div class="bg-grey p-1 border border-black m-1 solid-4 rounded-md shadow-sm" id="up-arrow"><img src="./assets/up.png" alt=""
-                        width="50px"></div>
+                <div class="bg-grey p-1 border border-black m-1 solid-4 rounded-md shadow-sm" id="up-arrow"><img
+                        src="./assets/up.png" alt="" width="50px"></div>
             </div>
             <div class="row flex justify-center align-center">
-                <div class="bg-grey p-1 border border-black m-1 solid-4 rounded-md shadow-sm" id="left-arrow"><img src="./assets/left.png" alt=""
-                        width="50px"></div>
-                <div class="bg-grey p-1 border border-black m-1 solid-4 rounded-md shadow-sm" id="down-arrow"><img src="./assets/down.png" alt=""
-                        width="50px" class="translate-y-10"></div>
-                <div class="bg-grey p-1 border border-black m-1 solid-4 rounded-md shadow-sm" id="right-arrow"><img src="./assets/right.png" alt=""
-                        width="50px"></div>
+                <div class="bg-grey p-1 border border-black m-1 solid-4 rounded-md shadow-sm" id="left-arrow"><img
+                        src="./assets/left.png" alt="" width="50px"></div>
+                <div class="bg-grey p-1 border border-black m-1 solid-4 rounded-md shadow-sm" id="down-arrow"><img
+                        src="./assets/down.png" alt="" width="50px" class="translate-y-10"></div>
+                <div class="bg-grey p-1 border border-black m-1 solid-4 rounded-md shadow-sm" id="right-arrow"><img
+                        src="./assets/right.png" alt="" width="50px"></div>
             </div>
             <div class="row flex justify-center align-center w-full mt-3">
-                <div class="bg-grey inline-block border border-black solid-4 rounded-md flex justify-center align-center shadow-sm" id="space-key"><img src="./assets/space-key.png" width="50px"/></div>
+                <div class="bg-grey inline-block border border-black solid-4 rounded-md flex justify-center align-center shadow-sm"
+                    id="space-key"><img src="./assets/space-key.png" width="50px" /></div>
             </div>
         </div>
     </div>

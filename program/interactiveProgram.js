@@ -1,20 +1,35 @@
 import Program from "./program.js";
 
 class InteractiveProgram extends Program {
-  constructor(squares, goat, scoreDisplay, levelDisplay) {
-    super(squares, goat);
+  updateControlKeys = null;
+
+  constructor(squares, goat, scoreDisplay, levelDisplay, updateControlKeys, messageDialog) {
+    super(squares, goat, messageDialog);
     this.scoreDisplay = scoreDisplay;
     this.levelDisplay = levelDisplay;
+    this.updateControlKeys = updateControlKeys;
   }
 
   setCommandCode(c) {
+    console.log(c);
+    console.log(this.isRunning);
+    
     if (c === "space") {
-      if (this.isRunning) return this.pause();
-      else return this.resume();
+      if (this.isRunning) {
+        this.updateControlKeys(c);
+
+        return this.pause();
+      }
+      else {
+        this.updateControlKeys(null);
+        
+        return this.resume();
+      }
     }
 
     this.commandCode = c;
 
+    this.updateControlKeys(this.commandCode)
     this.goat.setDirection(this.commandCode);
   }
 
@@ -39,18 +54,34 @@ class InteractiveProgram extends Program {
 
   proceedToNextLvl() {
     this.pause();
+
     this.prevScore = this.score;
 
     this.level += 1;
     this.levelDisplay.textContent = this.level;
 
     this.intervalTime = this.intervalTime * this.speed;
-    this.restart();
+    
+    this.updateControlKeys(1);
+    this.messageDialog.setMessage("Lvl Up</br>Good Job!")
+
+    const idTimeOut = setTimeout(() => {
+      this.restart();
+      clearTimeout(idTimeOut);
+    }, 3000);
+
   }
 
   onInit() {
     this.scoreDisplay.textContent = this.score;
     this.levelDisplay.textContent = this.level;
+    this.messageDialog.clearMessage();
+  }
+
+  onExit() {
+    this.messageDialog.setMessage(
+      '<span class="text-xl">You\'ve lost.<br>Click <span class="border border-black solid-4 rounded-md bg-grey p-1 inline-block text-md translate-y-minus-20">Play</span> to restart.<span>'
+    );
   }
 
   updateSquares() {
@@ -76,7 +107,7 @@ class InteractiveProgram extends Program {
       this.intervalTime = 1000;
       this.score = 0;
       this.level = 1;
-      return this.restart();
+      return this.exit();
     }
 
     if (this.score - this.prevScore === this.area - (this.obstacles.length + 1))
