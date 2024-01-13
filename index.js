@@ -81,6 +81,8 @@ playBtn.addEventListener("click", () => {
 
   interactiveProgram.init();
   interactiveProgram.execute();
+
+  playBtn.innerHTML = "Restart"
 });
 
 watchBotBtn.addEventListener("click", () => {

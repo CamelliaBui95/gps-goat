@@ -11,9 +11,6 @@ class InteractiveProgram extends Program {
   }
 
   setCommandCode(c) {
-    console.log(c);
-    console.log(this.isRunning);
-    
     if (c === "space") {
       if (this.isRunning) {
         this.updateControlKeys(c);
@@ -80,7 +77,7 @@ class InteractiveProgram extends Program {
 
   onExit() {
     this.messageDialog.setMessage(
-      '<span class="text-xl">You\'ve lost.<br>Click <span class="border border-black solid-4 rounded-md bg-grey p-1 inline-block text-md translate-y-minus-20">Play</span> to restart.<span>'
+      '<span class="text-xl">You\'ve lost.<br>Click <span class="border border-black solid-4 rounded-md bg-grey p-1 inline-block text-md translate-y-minus-20">Restart</span> to play again.<span>'
     );
   }
 

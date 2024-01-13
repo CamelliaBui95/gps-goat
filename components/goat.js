@@ -12,6 +12,11 @@ class Goat {
 
     setDirection = newDirection => {
         this.direction = newDirection;
+
+        if (newDirection === 1)
+            this.setName("goat-right");
+        if (newDirection === -1)
+            this.setName("goat-left")
     }
 
     getPosition = () => this.position;
@@ -26,6 +31,10 @@ class Goat {
 
     getName() {
         return this.name;
+    }
+
+    setName(newName) {
+        this.name = newName;
     }
         
 }
