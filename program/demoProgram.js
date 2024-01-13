@@ -1,8 +1,10 @@
 import Program from "./program.js";
 
 class DemoProgram extends Program {
-  constructor(squares, goat) {
+  handler = null;
+  constructor(squares, goat, handler) {
     super(squares, goat);
+    this.handler = handler;
   }
 
   setRandomDirection() {
@@ -13,6 +15,8 @@ class DemoProgram extends Program {
     const nextSquare = neighbors[randomIndex];
     const newDirection = nextSquare - currentPosition;
 
+    if (this.handler != null)
+      this.handler(newDirection)
     this.goat.setDirection(newDirection);
   }
 

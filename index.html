@@ -1,21 +1,48 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Goat GPS</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="./styles.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@200;300;400;500;600&display=swap" rel="stylesheet">
-    </head>
-    <body>
-        
-        
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Goat GPS</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@200;300;400;500;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <h1>Feed My Goat</h1>
+    <div class="wrapper">
+        <div id="instruction-container">
+
+            <ul class="border border-black rounded-md p-3">
+                <h3 id="instruction">Instruction:</h3>
+                <li class="my-1">Click <span
+                        class="bg-grey p-1 inline-block rounded-md border border-black rounded-md">Play</span> button to
+                    start the game.</li>
+                <li class="my-1">Click <span
+                        class="bg-grey p-1 inline-block rounded-md border border-black rounded-md">Watch Bot</span>
+                    button to observe Bot play.</li>
+                <li class="translate-y-minus-30 my-1">Use <img src="./assets/arrows.png" width="40px"
+                        class="translate-y-20 inline" /> to move your goat around on the grid.</li>
+                <li class="translate-y-minus-30 my-1">Tap <span
+                        class="space-key bg-grey border border-black rounded-md inline-block">space</span> on your
+                    keyboard to pause/resume the game while playing.</li>
+                <li class="my-1 none-style">Once you have cleared all the grass of the current grid, you'll proceed to
+                    the next levels where the goat's speed will be progressively higher in each.</li>
+                <li class="my-1 none-style">Be careful not to lead your goat into the wolves or rocks or the game will
+                    be over !</li>
+            </ul>
+        </div>
+
         <div class="container">
-            <div class="display">
+
+            <div class="display shadow-sm">
                 <div class="scoreDisplay">
                     <p>Score: </p>
                     <p class="score"></p>
@@ -25,15 +52,38 @@
                     <p class="currentLevel"></p>
                 </div>
             </div>
-            <div class="grid"></div>
-            
-            <div class="btn-group">
-                <button class="userMode">Play</button>
-                <button class="botMode" >Watch Bot</button>
+            <div id="message-container" class="shadow-sm">
+                <h3 id="#message">Let's Feed</h3>
+            </div>
+            <div class="grid shadow-sm"></div>
+
+            <div class="btn-group shadow-sm">
+                <button class="btn userMode shadow-sm">Play</button>
+                <button class="btn botMode shadow-sm">Watch Bot</button>
             </div>
         </div>
-        
-        <script type="module" src="./index.js" async defer></script>
-        
-    </body>
+
+        <div id="controls-container" class="flex flex-col justify-center align-center">
+            <div class="row flex justify-center align-center">
+                <div class="bg-grey p-1 border border-black m-1 solid-4 rounded-md shadow-sm" id="up-arrow"><img src="./assets/up.png" alt=""
+                        width="50px"></div>
+            </div>
+            <div class="row flex justify-center align-center">
+                <div class="bg-grey p-1 border border-black m-1 solid-4 rounded-md shadow-sm" id="left-arrow"><img src="./assets/left.png" alt=""
+                        width="50px"></div>
+                <div class="bg-grey p-1 border border-black m-1 solid-4 rounded-md shadow-sm" id="down-arrow"><img src="./assets/down.png" alt=""
+                        width="50px" class="translate-y-10"></div>
+                <div class="bg-grey p-1 border border-black m-1 solid-4 rounded-md shadow-sm" id="right-arrow"><img src="./assets/right.png" alt=""
+                        width="50px"></div>
+            </div>
+            <div class="row flex justify-center align-center w-full mt-3">
+                <div class="bg-grey inline-block border border-black solid-4 rounded-md flex justify-center align-center shadow-sm" id="space-key"><img src="./assets/space-key.png" width="50px"/></div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="./index.js" async defer></script>
+
+</body>
+
 </html>

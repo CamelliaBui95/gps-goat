@@ -1,6 +1,7 @@
 import Rock from "../components/rock.js";
 import Wolf from "../components/wolf.js";
 import config from "../config.js";
+
 class Program {
   timeoutSessions = {};
   interval;
@@ -87,7 +88,8 @@ class Program {
 
   onResume() {}
   onInit() {}
-  onExit() {}
+  onExit() { }
+
 }
 
 export default Program;

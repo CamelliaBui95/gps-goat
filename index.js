@@ -2,6 +2,7 @@ import config from "./config.js";
 import Grid from "./components/grid.js";
 import Goat from "./components/goat.js";
 import Controller from "./components/controller.js";
+import ControlKeys from "./components/controlKeys.js";
 import Square from "./components/square.js";
 import DemoProgram from "./program/demoProgram.js";
 import BotProgram from "./program/botProgram.js";
@@ -25,11 +26,16 @@ const commands = {
   Space: { code: "Space", value: "space" },
 };
 
+const controlKeys = new ControlKeys();
+
 for (let i = 0; i < config.area; i++) squares[i] = new Square(i);
 
 const goat = new Goat(0, 1);
 const grid = new Grid(width, squares);
-const demoProgram = new DemoProgram(squares, goat);
+const demoProgram = new DemoProgram(squares, goat, (direction) => {
+  controlKeys.updateKeys(direction);
+});
+
 const interactiveProgram = new InteractiveProgram(
   squares,
   goat,
