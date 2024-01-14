@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Goat GPS</title>
+    <title>Feed My Goat</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="./styles.css">
@@ -20,7 +20,7 @@
             src="./assets/goat_right.png" class="translate-y-10 animation-slide-vertical" /> Feed
         My Goat <img src="./assets/goat_left.png" class="translate-y-10 animation-slide-vertical" /><img src="./assets/loup.png" class="translate-y-10 ml-2 animation-delay-1 animation-slide-vertical" /></h1>
     <div class="wrapper">
-        <div id="instruction-container">
+        <div id="instruction-container" class="col-1">
 
             <ul class="border border-black rounded-md p-3">
                 <h3 id="instruction">Instruction:</h3>
@@ -37,21 +37,21 @@
                     keyboard to pause/resume the game while playing.</li>
                 <li class="my-1 none-style">Once you have cleared all the grass of the current grid, you'll proceed to
                     the next levels where the goat's speed will be progressively higher in each.</li>
-                <li class="my-1 none-style">Be careful not to lead your goat into the wolves / rocks or the game will
+                <li class="my-1 none-style">Be careful not to lead your goat into the wolves / rocks / borders or the game will
                     be over !</li>
             </ul>
         </div>
 
-        <div class="container">
+        <div class="col-2 container">
 
             <div class="bound">
                 <div class="display shadow-sm">
                     <div class="scoreDisplay">
-                        <p>Score: </p>
+                        <p><span class="underline">Score:</span> </p>
                         <p class="score"></p>
                     </div>
                     <div class="levelDisplay">
-                        <p>Level: </p>
+                        <p><span class="underline">Level:</span> </p>
                         <p class="currentLevel"></p>
                     </div>
                 </div>
@@ -69,22 +69,29 @@
             </div>
         </div>
 
-        <div id="controls-container" class="flex flex-col justify-center align-center">
-            <div class="row flex justify-center align-center">
-                <div class="bg-grey p-1 border border-black m-1 solid-4 rounded-md shadow-sm" id="up-arrow"><img
-                        src="./assets/up.png" alt="" width="50px"></div>
+        <div class="col-3 flex flex-col justify-center align-center">
+            <div id="record-container" class="bg-white p-3 mb-3 border border-black solid-2 rounded-md shadow-sm">
+                <h3 class="text-center">My Record</h3>
+                <p><span class="underline">Highest Score:</span> <span id="highest-score">0</span></p>
+                <p><span class="underline">Previous Score:</span> <span id="previous-score">0</span></p>
             </div>
-            <div class="row flex justify-center align-center">
-                <div class="bg-grey p-1 border border-black m-1 solid-4 rounded-md shadow-sm" id="left-arrow"><img
-                        src="./assets/left.png" alt="" width="50px"></div>
-                <div class="bg-grey p-1 border border-black m-1 solid-4 rounded-md shadow-sm" id="down-arrow"><img
-                        src="./assets/down.png" alt="" width="50px" class="translate-y-10"></div>
-                <div class="bg-grey p-1 border border-black m-1 solid-4 rounded-md shadow-sm" id="right-arrow"><img
-                        src="./assets/right.png" alt="" width="50px"></div>
-            </div>
-            <div class="row flex justify-center align-center w-full mt-3">
-                <div class="bg-grey inline-block border border-black solid-4 rounded-md flex justify-center align-center shadow-sm"
-                    id="space-key"><img src="./assets/space-key.png" width="50px" /></div>
+            <div id="controls-container" class="flex flex-col justify-center align-center">
+                <div class="row flex justify-center align-center">
+                    <div class="bg-grey p-1 border border-black m-1 solid-4 rounded-md shadow-sm" id="up-arrow"><img
+                            src="./assets/up.png" alt="" width="50px"></div>
+                </div>
+                <div class="row flex justify-center align-center">
+                    <div class="bg-grey p-1 border border-black m-1 solid-4 rounded-md shadow-sm" id="left-arrow"><img
+                            src="./assets/left.png" alt="" width="50px"></div>
+                    <div class="bg-grey p-1 border border-black m-1 solid-4 rounded-md shadow-sm" id="down-arrow"><img
+                            src="./assets/down.png" alt="" width="50px" class="translate-y-10"></div>
+                    <div class="bg-grey p-1 border border-black m-1 solid-4 rounded-md shadow-sm" id="right-arrow"><img
+                            src="./assets/right.png" alt="" width="50px"></div>
+                </div>
+                <div class="row flex justify-center align-center w-full mt-3">
+                    <div class="bg-grey inline-block border border-black solid-4 rounded-md flex justify-center align-center shadow-sm"
+                        id="space-key"><img src="./assets/space-key.png" width="50px" /></div>
+                </div>
             </div>
         </div>
     </div>

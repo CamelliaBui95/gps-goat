@@ -52,6 +52,10 @@ ul {
   margin: 1.5rem;
 }
 
+.mb-3 {
+  margin: 1.5rem;
+}
+
 .ml-1 {
   margin-left: 0.5rem;
 }
@@ -133,16 +137,25 @@ h3 {
   background-color: rgb(240, 240, 240);
 }
 
+.bg-grey-md {
+  background-color: rgb(109, 107, 107);
+}
+
+.bg-white {
+  background-color: white;
+}
+
 .none-style {
   list-style: none;
 }
 
-.opacity-0 {
-  opacity: 0;
+.underline {
+  text-decoration: underline;
+  line-height: 1px;
 }
 
-.bg-grey-md {
-  background-color: rgb(109, 107, 107);
+.opacity-0 {
+  opacity: 0;
 }
 
 .shadow-sm {
@@ -155,6 +168,10 @@ h3 {
 
 .text-md {
   font-size: 0.75rem;
+}
+
+.text-center {
+  text-align: center;
 }
 
 /**/
@@ -403,6 +420,11 @@ h1 {
   }
 
   animation: verticalSlide 1s ease alternate infinite;
+}
+
+/*Record*/
+#record-container {
+  width: 80%;
 }
 
 

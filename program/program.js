@@ -16,11 +16,13 @@ class Program {
   prevScore = 0;
   level = 1;
   messageDialog = null;
+  record = null;
 
-  constructor(squares, goat, messageDialog) {
+  constructor(squares, goat, messageDialog, record) {
     this.squares = squares;
     this.goat = goat;
     this.messageDialog = messageDialog;
+    this.record = record;
     this.wolf = new Wolf();
   }
 
@@ -69,6 +71,13 @@ class Program {
   exit() {
     this.onExit();
 
+    if(this.record)
+      this.record.updateRecord(this.score);
+
+    this.prevScore = 0;
+    this.score = 0;
+    this.level = 1;
+
     clearInterval(this.interval);
     this.isRunning = false;
   }
@@ -103,6 +112,10 @@ class Program {
   onPause() {
     this.messageDialog.setMessage("Pause");
     this.messageDialog.displayMessage();
+  }
+
+  getScore() {
+    return this.score;
   }
 
 }

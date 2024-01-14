@@ -8,6 +8,7 @@ import Square from "./components/square.js";
 import DemoProgram from "./program/demoProgram.js";
 import BotProgram from "./program/botProgram.js";
 import InteractiveProgram from "./program/interactiveProgram.js";
+import Record from "./components/record.js";
 
 let squares = [];
 const playBtn = document.querySelector(".userMode");
@@ -29,6 +30,7 @@ const commands = {
 
 const controlKeys = new ControlKeys();
 const msgDialog = new MessageDialog();
+const record = new Record();
 
 for (let i = 0; i < config.area; i++) squares[i] = new Square(i);
 
@@ -51,8 +53,10 @@ const interactiveProgram = new InteractiveProgram(
   (direction) => {
     controlKeys.updateKeys(direction);
   },
-  msgDialog
+  msgDialog,
+  record
 );
+
 const botProgram = new BotProgram(
   squares,
   goat,

@@ -3,8 +3,16 @@ import Program from "./program.js";
 class InteractiveProgram extends Program {
   updateControlKeys = null;
 
-  constructor(squares, goat, scoreDisplay, levelDisplay, updateControlKeys, messageDialog) {
-    super(squares, goat, messageDialog);
+  constructor(
+    squares,
+    goat,
+    scoreDisplay,
+    levelDisplay,
+    updateControlKeys,
+    messageDialog,
+    record
+  ) {
+    super(squares, goat, messageDialog, record);
     this.scoreDisplay = scoreDisplay;
     this.levelDisplay = levelDisplay;
     this.updateControlKeys = updateControlKeys;
@@ -16,17 +24,16 @@ class InteractiveProgram extends Program {
         this.updateControlKeys(c);
 
         return this.pause();
-      }
-      else {
+      } else {
         this.updateControlKeys(null);
-        
+
         return this.resume();
       }
     }
 
     this.commandCode = c;
 
-    this.updateControlKeys(this.commandCode)
+    this.updateControlKeys(this.commandCode);
     this.goat.setDirection(this.commandCode);
   }
 
@@ -45,7 +52,7 @@ class InteractiveProgram extends Program {
     ) {
       return true;
     }
-      
+
     return false;
   }
 
@@ -58,15 +65,14 @@ class InteractiveProgram extends Program {
     this.levelDisplay.textContent = this.level;
 
     this.intervalTime = this.intervalTime * this.speed;
-    
+
     this.updateControlKeys(1);
-    this.messageDialog.setMessage("Lvl Up</br>Good Job!")
+    this.messageDialog.setMessage("Lvl Up</br>Good Job!");
 
     const idTimeOut = setTimeout(() => {
       this.restart();
       clearTimeout(idTimeOut);
     }, 3000);
-
   }
 
   onInit() {
@@ -83,7 +89,7 @@ class InteractiveProgram extends Program {
 
   updateSquares() {
     const prevPosition = this.goat.getPosition();
-    
+
     this.squares[prevPosition].setStatus("");
 
     this.goat.move();
@@ -102,8 +108,7 @@ class InteractiveProgram extends Program {
     if (this.willMeetLimits()) {
       this.pause();
       this.intervalTime = 1000;
-      this.score = 0;
-      this.level = 1;
+   
       return this.exit();
     }
 
