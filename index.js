@@ -20,6 +20,8 @@ const directions = config.directions; // [1, -1, 10, -10]
 let userMode = false;
 let botMode = false;
 
+window.addEventListener("keydown", (e) => e.preventDefault());
+
 const commands = {
   ArrowRight: { code: "ArrowRight", value: directions[0] },
   ArrowLeft: { code: "ArrowLeft", value: directions[1] },
@@ -86,7 +88,7 @@ playBtn.addEventListener("click", () => {
   interactiveProgram.init();
   interactiveProgram.execute();
 
-  playBtn.innerHTML = "Restart"
+  playBtn.innerHTML = "Restart";
 });
 
 watchBotBtn.addEventListener("click", () => {
